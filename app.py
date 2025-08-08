@@ -139,7 +139,7 @@ with col1:
 with col2:
     st.markdown('<div class="result-box">', unsafe_allow_html=True)
 
-   if not classify_clicked or email_input.strip() == "":
+    if not classify_clicked or email_input.strip() == "":
         st.info("📝 Enter an email on the left and click **Classify Email** to see the result here.")
     else:
         features = vectorizer.transform([email_input])
@@ -178,6 +178,7 @@ Always remain vigilant but this email appears legitimate.
 
 # Footer
 st.markdown('<footer>🔹 Developed by Your Name | 📅 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
+
 
 
 
