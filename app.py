@@ -113,10 +113,10 @@ st.markdown("""
         }
         footer {
             text-align: center;
-            color: #ddd;
+            color: #111827;
             font-size: 0.9rem;
-            margin-top: 3rem;
-            letter-spacing: 0.7px;
+            margin-top: 2rem;
+            letter-spacing: 0.6px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -126,7 +126,7 @@ st.markdown('<h1 class="title">📧 AI-Powered Email Spam Classifier</h1>', unsa
 st.markdown('<h3 class="subtitle">Paste your email below and find out if it is spam or not!</h3>', unsafe_allow_html=True)
 
 # Layout: two columns side by side
-col1, col2 = st.columns([2, 1])
+col1, col2 = st.columns([1, 1])
 
 with col1:
 
@@ -177,7 +177,8 @@ Always remain vigilant but this email appears legitimate.
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Footer
-st.markdown('<footer>🔹 Developed by Your Name | 📅 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
+st.markdown('<footer>🔹 Developed by Muhammad Sikander Bakht | 📅 Aug 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
+
 
 
 
