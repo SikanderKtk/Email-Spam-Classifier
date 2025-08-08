@@ -129,7 +129,6 @@ st.markdown('<h3 class="subtitle">Paste your email below and find out if it is s
 col1, col2 = st.columns([2, 1])
 
 with col1:
-    st.markdown('<div class="container">', unsafe_allow_html=True)
 
     email_input = st.text_area("✉️ Enter your email text here...")
 
@@ -179,3 +178,4 @@ Always remain vigilant but this email appears legitimate.
 
 # Footer
 st.markdown('<footer>🔹 Developed by Your Name | 📅 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
+
