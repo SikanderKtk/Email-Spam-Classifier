@@ -1,5 +1,5 @@
 import streamlit as st
-import pickle
+import joblib
 import re
 import string
 
@@ -103,6 +103,7 @@ with col2:
         caption="Spam Email",
         use_container_width=True
     )
+
 
 
 
