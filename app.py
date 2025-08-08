@@ -1,83 +1,97 @@
 import streamlit as st
-import pickle
 import joblib
-import numpy as np
 from PIL import Image
 
-# --- Load model and vectorizer ---
+# =======================
+# Page Configuration
+# =======================
+st.set_page_config(
+    page_title="Email Spam Classifier",
+    page_icon="📧",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# =======================
+# Load Model & Vectorizer
+# =======================
 model = joblib.load("naive_bayes_model.pkl")
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
-# --- Page config ---
-st.set_page_config(page_title="Email Spam Classifier", page_icon="📧", layout="wide")
-
-# --- Custom CSS for styling ---
+# =======================
+# Custom CSS for Styling
+# =======================
 st.markdown("""
     <style>
-        .main {
-            background-color: #f9f9f9;
-            padding: 2rem;
-            border-radius: 10px;
+        body {
+            background-color: #f5f7fa;
         }
         .title {
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: #2C3E50;
-        }
-        .sub {
-            font-size: 1rem;
-            color: #555;
-        }
-        .result {
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 1.3rem;
-            font-weight: bold;
             text-align: center;
+            font-size: 2.5rem;
+            color: #1a73e8;
+            font-weight: bold;
+            padding-bottom: 10px;
         }
-        .spam {
-            background-color: #ffcccc;
-            color: #a10000;
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+            padding-bottom: 20px;
         }
-        .ham {
-            background-color: #ccffcc;
-            color: #006600;
+        .stButton>button {
+            background-color: #1a73e8;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+        }
+        .stButton>button:hover {
+            background-color: #155ab6;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# --- Header Section ---
-st.markdown("<p class='title'>📧 Email Spam Classification App</p>", unsafe_allow_html=True)
-st.markdown("<p class='sub'>Detect whether an email is Spam or Not Spam using a trained Naive Bayes model.</p>", unsafe_allow_html=True)
+# =======================
+# Header Section
+# =======================
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    email_img = Image.open("emailSpam.png")  # Your image in repo
+    st.image(email_img, use_container_width=True)
 
-st.write("---")
+st.markdown('<div class="title">📧 AI-Powered Email Spam Classifier</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Detect spam emails instantly with Machine Learning</div>', unsafe_allow_html=True)
 
-# --- Layout with 2 columns ---
-col1, col2 = st.columns([1.5, 1])
+# =======================
+# Main Content
+# =======================
+col_left, col_right = st.columns([2, 1])
 
-with col1:
-    st.subheader("✏️ Enter Email Content")
-    user_input = st.text_area("Paste the email text here...", height=200)
+with col_left:
+    st.subheader("✉️ Enter Your Email Text")
+    email_input = st.text_area("Paste email content here...", height=200)
 
     if st.button("🔍 Classify Email"):
-        if user_input.strip() != "":
-            # Vectorize and predict
-            input_data = vectorizer.transform([user_input])
-            prediction = model.predict(input_data)[0]
+        if email_input.strip() == "":
+            st.warning("Please enter some text to classify.")
+        else:
+            # Transform and predict
+            features = vectorizer.transform([email_input])
+            prediction = model.predict(features)[0]
 
             if prediction == 1:
-                st.markdown("<div class='result spam'>🚫 This email is SPAM</div>", unsafe_allow_html=True)
+                st.error("🚨 This email is **SPAM**")
             else:
-                st.markdown("<div class='result ham'>✅ This email is NOT SPAM</div>", unsafe_allow_html=True)
-        else:
-            st.warning("⚠️ Please enter some text before classifying.")
+                st.success("✅ This email is **NOT SPAM**")
 
-with col2:
-    st.subheader("📌Email")
-    sample_img = Image.open("emailSpam.png")  # <-- Add a nice image in repo
-    st.image(sample_img, caption="Example Email Format", use_container_width=True)
+with col_right:
+    st.subheader("📌 Email Classifier")
+    poster_img = Image.open("emailSpam.png")  # Change to your file name
+    st.image(poster_img, caption="Email Spam Classifier Project", use_container_width=True)
 
-# --- Footer ---
-st.write("---")
-st.markdown("**Developed by Muhammad Sikander Bakht** | Data Science Student | UET Peshawar")
-
+# =======================
+# Footer
+# =======================
+st.markdown("---")
+st.markdown("🔹 **Developed by:** Your Name | 📅 2025 | 🚀 Powered by Naive Bayes & TF-IDF")
