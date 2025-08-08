@@ -82,10 +82,10 @@ st.markdown("""
         .result-box {
             background-color: #111827;
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.6);
             color: #f0f0f5;
-            max-height: 80vh;
+            max-height: 60vh;
             overflow-y: auto;
         }
         .result-success {
@@ -102,7 +102,7 @@ st.markdown("""
         }
         .info-box {
             background: #252a41;
-            padding: 1.2rem 1.4rem;
+            padding: 1rem 1rem;
             border-radius: 12px;
             margin-top: 1.5rem;
             font-size: 1rem;
@@ -137,15 +137,13 @@ with col1:
     st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
-    st.markdown('<div class="result-box">' 
-                 if not classify_clicked or email_input.strip() == "":
+    st.markdown('<div class="result-box">', unsafe_allow_html=True)
+
+   if not classify_clicked or email_input.strip() == "":
         st.info("📝 Enter an email on the left and click **Classify Email** to see the result here.")
     else:
         features = vectorizer.transform([email_input])
         prediction = model.predict(features)[0]
-                 </div>
-                  , unsafe_allow_html=True)
-
    
 
         if prediction == 1:
