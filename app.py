@@ -105,8 +105,8 @@ st.markdown("""
             padding: 1.2rem 1.4rem;
             border-radius: 12px;
             margin-top: 1.5rem;
-            font-size: 1.05rem;
-            line-height: 1.5;
+            font-size: 1rem;
+            line-height: 1;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             white-space: pre-line;
             color: #ddd;  /* make sure text is visible */
@@ -155,7 +155,6 @@ with col2:
 - Requests for money, payments, or personal info.
 - Suspicious or unfamiliar links.
 - Too-good-to-be-true offers or prizes.
-
 Be cautious with such emails and never share sensitive info or click suspicious links.
             </div>
             """, unsafe_allow_html=True)
@@ -178,4 +177,5 @@ Always remain vigilant but this email appears legitimate.
 
 # Footer
 st.markdown('<footer>🔹 Developed by Your Name | 📅 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
+
 
