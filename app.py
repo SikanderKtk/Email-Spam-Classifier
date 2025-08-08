@@ -4,8 +4,8 @@ import re
 import string
 
 # Load model & vectorizer
-model = pickle.load(open('spam_model.pkl', 'rb'))
-vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
+model = pickle.load(open('naive_bayes_model.pkl', 'rb'))
+vectorizer = pickle.load(open('tfidf_vectorizer.pkl', 'rb'))
 
 # Text cleaning function
 def preprocess_text(text):
@@ -68,7 +68,7 @@ col1, col2 = st.columns([2, 1])
 
 with col1:
     st.markdown("<div class='main-card'>", unsafe_allow_html=True)
-    st.title("📧 Email Spam Classification")
+    st.title("📧 Email Spam Classifier")
     st.markdown("Detect whether an email is **Spam** or **Ham (Not Spam)** instantly.")
 
     # Input
@@ -100,6 +100,7 @@ with col1:
 with col2:
     st.image(
         "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Spam_email.png/640px-Spam_email.png",
-        caption="Sample Spam Email",
+        caption="Spam Email",
         use_container_width=True
     )
+
