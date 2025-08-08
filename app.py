@@ -4,8 +4,8 @@ import re
 import string
 
 # Load model & vectorizer
-model = joblib.load('naive_bayes_model.pkl')
-vectorizer = joblib.load('tfidf_vectorizer_model.pkl')
+model = joblib.load("naive_bayes_model.pkl")
+vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
 # Text cleaning function
 def preprocess_text(text):
@@ -103,6 +103,7 @@ with col2:
         caption="Spam Email",
         use_container_width=True
     )
+
 
 
 
