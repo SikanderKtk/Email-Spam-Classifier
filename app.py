@@ -144,6 +144,7 @@ with col2:
     else:
         features = vectorizer.transform([email_input])
         prediction = model.predict(features)[0]
+       </div>
 
         if prediction == 1:
             st.markdown('<p class="result-error">🚨 This email is <strong>SPAM</strong></p>', unsafe_allow_html=True)
@@ -177,5 +178,6 @@ Always remain vigilant but this email appears legitimate.
 
 # Footer
 st.markdown('<footer>🔹 Developed by Your Name | 📅 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
+
 
 
