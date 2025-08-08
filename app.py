@@ -73,10 +73,11 @@ with col1:
             st.warning("⚠️ Please enter some text before classifying.")
 
 with col2:
-    st.subheader("📌 Sample Email")
-    sample_img = Image.open("sample_email.png")  # <-- Add a nice image in repo
+    st.subheader("📌Email")
+    sample_img = Image.open("emailSpam.png")  # <-- Add a nice image in repo
     st.image(sample_img, caption="Example Email Format", use_container_width=True)
 
 # --- Footer ---
 st.write("---")
 st.markdown("**Developed by Muhammad Sikander Bakht** | Data Science Student | UET Peshawar")
+
