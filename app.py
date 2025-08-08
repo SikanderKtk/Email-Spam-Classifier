@@ -4,8 +4,8 @@ import re
 import string
 
 # Load model & vectorizer
-model = pickle.load(open('Task 3 code/naive_bayes_model.pkl', 'rb'))
-vectorizer = pickle.load(open('tfidf_vectorizer.pkl', 'rb'))
+model = joblib.load('naive_bayes_model.pkl')
+vectorizer = joblib.load('tfidf_vectorizer_model.pkl')
 
 # Text cleaning function
 def preprocess_text(text):
@@ -103,5 +103,6 @@ with col2:
         caption="Spam Email",
         use_container_width=True
     )
+
 
 
