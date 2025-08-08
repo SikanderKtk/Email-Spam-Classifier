@@ -137,14 +137,16 @@ with col1:
     st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
-    st.markdown('<div class="result-box">', unsafe_allow_html=True)
-
-    if not classify_clicked or email_input.strip() == "":
+    st.markdown('<div class="result-box">' 
+                 if not classify_clicked or email_input.strip() == "":
         st.info("📝 Enter an email on the left and click **Classify Email** to see the result here.")
     else:
         features = vectorizer.transform([email_input])
         prediction = model.predict(features)[0]
-       </div>
+                 </div>
+                  , unsafe_allow_html=True)
+
+   
 
         if prediction == 1:
             st.markdown('<p class="result-error">🚨 This email is <strong>SPAM</strong></p>', unsafe_allow_html=True)
@@ -178,6 +180,7 @@ Always remain vigilant but this email appears legitimate.
 
 # Footer
 st.markdown('<footer>🔹 Developed by Your Name | 📅 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
+
 
 
 
