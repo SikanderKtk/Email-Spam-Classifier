@@ -13,7 +13,7 @@ st.set_page_config(
 model = joblib.load("naive_bayes_model.pkl")
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
-# Custom CSS Styling
+# CSS Styling
 st.markdown("""
     <style>
         body {
@@ -21,12 +21,15 @@ st.markdown("""
             color: #f0f0f5;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        /* Remove fixed height to avoid big empty box */
         .container {
             background: #1a1a2e;
             padding: 2rem 2.5rem;
             border-radius: 15px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-            height: 520px;
+            /* Remove fixed height */
+            min-height: 320px;
+            max-height: 80vh;
             overflow-y: auto;
         }
         h1.title {
@@ -53,8 +56,10 @@ st.markdown("""
             font-size: 1.15rem !important;
             box-shadow: inset 0 0 6px rgba(255,255,255,0.1);
             resize: vertical !important;
-            min-height: 250px !important;
+            min-height: 180px !important;
+            max-height: 60vh !important;
             line-height: 1.5;
+            overflow-y: auto !important;
         }
         div.stButton > button {
             background: #ffcc00;
@@ -78,9 +83,9 @@ st.markdown("""
             background-color: #111827;
             padding: 2rem;
             border-radius: 15px;
-            height: 100%;
             box-shadow: 0 8px 24px rgba(0,0,0,0.6);
             color: #f0f0f5;
+            max-height: 80vh;
             overflow-y: auto;
         }
         .result-success {
@@ -104,6 +109,7 @@ st.markdown("""
             line-height: 1.5;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             white-space: pre-line;
+            color: #ddd;  /* make sure text is visible */
         }
         footer {
             text-align: center;
@@ -172,4 +178,4 @@ Always remain vigilant but this email appears legitimate.
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Footer
-st.markdown('<footer>🔹 Developed by Muhammad Sikander Bakht | 📅 Aug 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
+st.markdown('<footer>🔹 Developed by Your Name | 📅 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
