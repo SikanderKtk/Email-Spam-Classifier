@@ -89,11 +89,12 @@ with col_left:
 
 with col_right:
     st.subheader("📌 Email Classifier")
-    poster_img = Image.open("emailspam.png")  # Consistent lowercase filename
+    poster_img = Image.open("emailSpam.png")  # Consistent lowercase filename
     st.image(poster_img, caption="Email Spam Classifier Project", use_container_width=True)
 
 # =======================
 # Footer
 # =======================
 st.markdown("---")
-st.markdown("🔹 **Developed by:** Your Name | 📅 2025 | 🚀 Powered by Naive Bayes & TF-IDF")
+st.markdown("🔹 **Developed by:** Muhammad Sikander Bakht | 📅 Aug 2025 | 🚀 Powered by Naive Bayes & TF-IDF")
+
