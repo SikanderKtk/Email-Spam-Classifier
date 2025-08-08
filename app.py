@@ -113,7 +113,7 @@ st.markdown("""
         }
         footer {
             text-align: center;
-            color: #111827;
+            color: #ddd;
             font-size: 0.9rem;
             margin-top: 2rem;
             letter-spacing: 0.6px;
@@ -178,6 +178,7 @@ Always remain vigilant but this email appears legitimate.
 
 # Footer
 st.markdown('<footer>🔹 Developed by Muhammad Sikander Bakht | 📅 Aug 2025 | 🚀 Powered by Naive Bayes & TF-IDF</footer>', unsafe_allow_html=True)
+
 
 
 
