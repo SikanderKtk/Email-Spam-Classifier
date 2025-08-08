@@ -45,9 +45,11 @@ st.markdown("""
             font-size: 1.1rem;
             border-radius: 8px;
             padding: 0.6rem 1.2rem;
+            border: none;
         }
         .stButton>button:hover {
             background-color: #155ab6;
+            cursor: pointer;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -57,7 +59,7 @@ st.markdown("""
 # =======================
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
-    email_img = Image.open("emailSpam.png")  # Your image in repo
+    email_img = Image.open("emailspam.png")  # Lowercase filename
     st.image(email_img, use_container_width=True)
 
 st.markdown('<div class="title">📧 AI-Powered Email Spam Classifier</div>', unsafe_allow_html=True)
@@ -87,7 +89,7 @@ with col_left:
 
 with col_right:
     st.subheader("📌 Email Classifier")
-    poster_img = Image.open("emailSpam.png")  # Change to your file name
+    poster_img = Image.open("emailspam.png")  # Consistent lowercase filename
     st.image(poster_img, caption="Email Spam Classifier Project", use_container_width=True)
 
 # =======================
