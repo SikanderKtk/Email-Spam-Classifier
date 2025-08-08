@@ -99,10 +99,11 @@ with col1:
 
 with col2:
     st.image(
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Spam_email.png/640px-Spam_email.png",
+        "emailSpam.png",
         caption="Spam Email",
         use_container_width=True
     )
+
 
 
 
