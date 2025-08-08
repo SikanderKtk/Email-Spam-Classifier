@@ -26,7 +26,8 @@ st.markdown("""
             padding: 2rem 2.5rem;
             border-radius: 15px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-            height: 500px;
+            height: 520px;
+            overflow-y: auto;
         }
         h1.title {
             font-size: 3rem;
@@ -49,23 +50,24 @@ st.markdown("""
             border: none !important;
             border-radius: 10px !important;
             padding: 1rem !important;
-            font-size: 1.1rem !important;
+            font-size: 1.15rem !important;
             box-shadow: inset 0 0 6px rgba(255,255,255,0.1);
             resize: vertical !important;
             min-height: 250px !important;
+            line-height: 1.5;
         }
         div.stButton > button {
             background: #ffcc00;
             color: #1a1a2e;
             font-weight: 700;
-            font-size: 1.2rem;
-            padding: 0.7rem 1.6rem;
+            font-size: 1.3rem;
+            padding: 0.75rem 1.8rem;
             border-radius: 12px;
             border: none;
             width: 100%;
             transition: background 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 204, 0, 0.5);
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
         div.stButton > button:hover {
             background: #e6b800;
@@ -79,38 +81,29 @@ st.markdown("""
             height: 100%;
             box-shadow: 0 8px 24px rgba(0,0,0,0.6);
             color: #f0f0f5;
+            overflow-y: auto;
         }
         .result-success {
             color: #16c79a;
-            font-weight: 700;
-            font-size: 1.5rem;
+            font-weight: 800;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
         }
         .result-error {
             color: #e74c3c;
-            font-weight: 700;
-            font-size: 1.5rem;
+            font-weight: 800;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
         }
         .info-box {
             background: #252a41;
-            padding: 1rem;
+            padding: 1.2rem 1.4rem;
             border-radius: 12px;
             margin-top: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.4;
+            font-size: 1.05rem;
+            line-height: 1.5;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        .examples button {
-            background-color: #4b6cb7;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            padding: 8px 14px;
-            margin: 0 8px 8px 0;
-            cursor: pointer;
-            transition: background-color 0.25s ease;
-        }
-        .examples button:hover {
-            background-color: #3a529f;
+            white-space: pre-line;
         }
         footer {
             text-align: center;
@@ -134,83 +127,47 @@ with col1:
 
     email_input = st.text_area("✉️ Enter your email text here...")
 
-    # Example buttons for easy testing
-    st.markdown('<div class="examples"><strong>Try Examples:</strong></div>', unsafe_allow_html=True)
-    example_spam = """Subject: Congratulations! You won a $1,000,000 prize!
-
-Dear Winner,
-
-We are pleased to inform you that you have been selected for a grand prize of $1,000,000 USD. To claim your reward, please provide your bank details and pay a small processing fee of $99.
-
-Hurry! This offer expires soon.
-
-Click the link below to claim now:
-http://fakeprize-claim.com
-
-Best regards,
-Prize Department
-"""
-    example_ham = """Subject: Meeting Schedule Confirmation
-
-Hi Sarah,
-
-Just confirming our meeting tomorrow at 3 PM in the conference room. Please let me know if you need any documents prepared beforehand.
-
-Looking forward to our discussion.
-
-Best,
-John
-"""
-
-    def set_example(text):
-        st.session_state["email_input"] = text
-
-    # Buttons in one line
-    cols = st.columns(2)
-    with cols[0]:
-        if st.button("Load Spam Example"):
-            set_example(example_spam)
-    with cols[1]:
-        if st.button("Load Ham Example"):
-            set_example(example_ham)
+    classify_clicked = st.button("🔍 Classify Email")
 
     st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
     st.markdown('<div class="result-box">', unsafe_allow_html=True)
 
-    # Use session_state to keep input synced
-    email_text = st.session_state.get("email_input", email_input)
-
-    if email_text.strip() == "":
-        st.info("📝 Enter an email on the left, then press **Classify Email** to see the result here.")
+    if not classify_clicked or email_input.strip() == "":
+        st.info("📝 Enter an email on the left and click **Classify Email** to see the result here.")
     else:
-        if st.button("🔍 Classify Email"):
-            features = vectorizer.transform([email_text])
-            prediction = model.predict(features)[0]
+        features = vectorizer.transform([email_input])
+        prediction = model.predict(features)[0]
 
-            if prediction == 1:
-                st.markdown('<p class="result-error">🚨 This email is <strong>SPAM</strong></p>', unsafe_allow_html=True)
-                st.markdown("""
-                <div class="info-box">
-                    <strong>Why spam?</strong><br>
-                    This email contains typical spam indicators:<br>
-                    - Requests for money or personal info<br>
-                    - Urgent language and suspicious links<br>
-                    - Too good to be true offers
-                </div>
-                """, unsafe_allow_html=True)
-            else:
-                st.markdown('<p class="result-success">✅ This email is <strong>NOT SPAM</strong></p>', unsafe_allow_html=True)
-                st.markdown("""
-                <div class="info-box">
-                    <strong>Why not spam?</strong><br>
-                    This email appears legitimate:<br>
-                    - Formal greeting and sign-off<br>
-                    - No suspicious requests or links<br>
-                    - Clear professional language
-                </div>
-                """, unsafe_allow_html=True)
+        if prediction == 1:
+            st.markdown('<p class="result-error">🚨 This email is <strong>SPAM</strong></p>', unsafe_allow_html=True)
+            st.markdown("""
+            <div class="info-box">
+<strong>Why is this email classified as SPAM?</strong>
+
+- Contains urgent or threatening language (e.g., “Hurry!”, “Expires soon”).
+- Requests for money, payments, or personal info.
+- Suspicious or unfamiliar links.
+- Too-good-to-be-true offers or prizes.
+
+Be cautious with such emails and never share sensitive info or click suspicious links.
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown('<p class="result-success">✅ This email is <strong>NOT SPAM</strong></p>', unsafe_allow_html=True)
+            st.markdown("""
+            <div class="info-box">
+<strong>Why is this email classified as NOT SPAM?</strong>
+
+- Polite, formal language and clear purpose.
+- No requests for money or sensitive information.
+- No suspicious links or attachments.
+- Proper greetings and sign-offs.
+
+Always remain vigilant but this email appears legitimate.
+            </div>
+            """, unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
